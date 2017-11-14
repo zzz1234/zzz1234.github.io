@@ -1,0 +1,392 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="staticFiles/css/reveal.css">
+		<link rel="stylesheet" href="staticFiles/css/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="staticFiles/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<!--script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script-->
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1><hr><a href="?transition=convex#/transitions">DOCUMENT CLUSTERING</a><hr></h1>
+
+			</section>
+			<section>
+				<h3><hr>Introduction</hr></h3>
+				<p>
+					Clustering is a division of data into groups of similar objects. Each group, called
+cluster, consists of objects that are similar between themselves and dissimilar
+to objects of other groups.</p>
+<p> In other words, the goal of a good document
+clustering scheme is to <span class="fragment highlight-red">minimize intra-cluster distances</span> between documents,
+while <span class="fragment highlight-red">maximizing inter-cluster distances</span> (using an appropriate distance
+measure between documents).
+				</p>
+			</section>
+			<section>
+				<h3><hr>Clustering vs Classification</hr></h3>
+				<p>
+					Clustering is the most common form of <span class="fragment highlight-red">unsupervised learning </span>and this is the major difference
+between clustering and classification.
+				</p>
+				<p>
+					Clustering is sometimes erroneously referred to as automatic classification. However, this is inaccurate, since the clusters found are not known prior to
+processing whereas in case of classification the classes are pre-defined.
+				</p>
+			</section>
+			<section>
+				<h2><hr>Applications of Clustering</h2>
+			<br><section>
+				<dl>
+					<dt>Finding Similar Documents</dt>
+					<p style="font-size: 30px">
+					This feature is often used when the user has spotted one “good” document in a search result. It is also able to discover documents that are conceptually alike in contrast to search-based approaches that only
+discovers whether the documents share same words.
+</p>
+				</dl>
+			</section>
+			<section>
+				<dl>
+					<dt>Organizing Large Document Collections</dt>
+					<p style="font-size: 30px">
+					Document retrieval focuses on finding documents relevant to a particular query, but it fails to solve the
+problem of making sense of a large number of uncategorized documents.
+</p></dl>
+			</section>
+			</section>
+			<section>
+				<h2><hr>Literature Study</hr></h2><br><br>
+				<section>
+					<p>We have divided offline clustering process into four stages outlined below:</p>
+					<img src="staticFiles/img/cluster.PNG" height="275px" width="250px">
+				</section>
+				<section>
+
+					<dl>
+						<dt>Collection of Data</dt>
+						<dd>It includes the processes like crawling, indexing, filtering etc.
+which are used to collect the documents that needs to be clustered, index
+them to store and retrieve in a better way, and filter them to remove the extra
+data.<dd>
+					</dl>
+				</section>
+				<section>
+
+					<dl>
+						<dt>Preprocessing</dt>
+						<dd>It is done to represent the data in a form that can be used for
+clustering. There are many ways of representing the documents like, Vector-
+Model, graphical model etc. Many measures are also used for weighing the
+documents and their similarities.<dd>
+					</dl>
+				</section>
+				<section>
+
+					<dl>
+						<dt>Document Clustering</dt>
+						<dd>Document Clustering is the main focus of this project. We will discuss this in
+detail in a while...<dd>
+					</dl>
+				</section>
+				<section>
+
+					<dl>
+						<dt>Postprocessing</dt>
+						<dd>Postprocessing includes the major applications in which the document
+clustering is used, for example, the recommendation application which uses
+the results of clustering for recommending news articles to the users.<dd>
+					</dl>
+				</section>
+			</section>
+			<section>
+				<h2><hr>Clustering Methods</h2>
+
+				<section>
+					<h4>K - Means</h4>
+					<p>
+						The objective function
+of K - means is to minimize the average squared distance of objects from their
+cluster centers, where a cluster center is defined as the mean or centroid μ of
+the objects in a cluster C:
+					</p>
+				</section>
+				<section>
+					<p>Consider a set A = {1, 5, 8, 10}.Divide this set into two Clusters.</p>
+					<p>Let m1=1 , m2=10.</p>
+					<p>Two Clusters formed are {1, 5} and {8, 10} corresponding to m=1 and m=10.</p>
+				</section>
+				<section>
+					<p>Now divide these clusters further into two clusters:</p>
+					<p> Calculate mean for two clusters:  m1=3 and m2=9</p>
+					<p> Clusters formed are {1, 5} and {8, 10} (not further divisible).</p>
+				</section>
+				<section>
+					<h4>Hierarchical Clustering</h4>
+					<p>
+						Hierarchical clustering attempts to
+create a hierarchical decomposition of the given document collection thus
+achieving a hierarchical structure. Hierarchical methods are usually classified
+into Agglomerative and Divisive methods.
+					</p>
+				</section>
+
+
+			</section>
+			<section>
+				<h2><hr>Preprocessing</h2>
+				<section>
+					<p>
+						Techniques Most of the clustering methods depend on various preprocessing
+techniques to achieve optimal quality and performance. We discuss here some
+of the common preprocessing methods.
+
+					</p>
+				</section>
+				<section>
+					<h4>Term Filtering</h4>
+					<p>
+						The removal of
+stopwords is the most common term filtering technique used. There are
+standard stopword lists available but in most of the applications these are
+modified depending on the quality of the dataset.
+					</p>
+				</section>
+				<section>
+					<img src="staticFiles/img/tocc.gif" height="325px" width="310px">
+				</section>
+				<section>
+					<h4>Stemming</h4>
+					<p>
+						Stemming is the process of reducing words to their stem or
+root form. For example ‘cook’, ’cooking’, ‘cooked’ are all forms of the same
+word used in different constraint but for measuring similarity these should be
+considered same.
+					</p>
+				</section>
+				<section>
+					<img src="staticFiles/img/toccc.png" height="355px" width="310px">
+				</section>
+				<section>
+					<h4>Graph preprocessing</h4>
+					<p>
+						The algorithms using the graphs of documents or
+features require preprocessing of the graph inorder to improve the quality and
+time efficiency. Some simple graph preprocessing techniques include removal
+of edges having weight lower than threshold, removal of nodes.
+					</p>
+				</section>
+			</section>
+			<section>
+				<h2><hr>Evaluation</h2>
+				<section>
+					<p>
+						One of the most important issues in clusters analysis is the
+evaluation of the clustering results. Evaluating clustering results is the analysis
+of the output to understand how well it reproduces the original structure of
+the data.
+					</p>
+				</section>
+				<section>
+					<p>
+						The ways of evaluation are divided in two parts:<br><br>
+1. External quality measure<br>
+<p>
+User Surveys are a very common external measure of evaluating clustering
+algorithms and often the only one possible.
+</p>
+					</p>
+				</section>
+				<section>
+					<p>
+
+2. Internal quality measure<br>
+<p>
+	Overall Similarity an internal quality measure when no external information is available. Here
+	the cohesiveness of clusters can be used as a measure of cluster similarity. One method
+	for computing the cluster cohesiveness is to use the weighted similarity of the internal
+	cluster similarity.
+</p>
+					</p>
+
+
+				</section>
+			</section>
+			<section>
+				<section>
+				<h3><hr>Triplet Based Graph Partitioning<hr></h3>
+				<h4>Introduction</h4><br>
+
+				<p>
+
+				<ul>
+					<li>Document Representation</li>
+					<li>Similarity measure</li>
+					<li>Graph preprocessing</li>
+					<li>Graph partitioning</li>
+					<li>Post processing</li>
+				</ul>
+				</p>
+			</section>
+			<section>
+				<h4>Document Representation</h4>
+				<p>
+					The most common way of representing the documents is as a set of keywords,
+where the keywords can be simple words or word phrases obtained using part-of-speech
+tagging, named entity recognition, etc.
+				</p>
+			</section>
+			<section>
+				<h4>Similarity measure</h4>
+				<p>
+					There are many standard similarity measures but in most of the applications
+it is modified depending upon the input data and output required.<br>
+Some of the common similarity measures are:<br>
+a. Cosine vector similarity<br>
+b. Euclidian distance
+				</p>
+			</section>
+			<section>
+				<h4>Graph preprocessing</h4>
+				<p>
+					The graph initially created is a clique with an edge between every pair of nodes,
+where a node corresponds to a document and en edge-weight is the similarity
+between the two documents.
+				</p>
+			</section>
+			<section>
+				<h4>Graph preprocessing</h4>
+				<p>
+					There are two major problems with such a clique:<br>
+
+1. It is a very dense graph and thus the time efficiency of the partitioning
+algorithm reduces to a high extent.<br>
+2. It contains a lot of noise added by the extra, non-required edges.
+				</p>
+			</section>
+			<section>
+				<h4>Graph partitioning</h4>
+				<p>
+					Graph partitioning is an NP-complete problem and thus has no perfect solution
+but there are many heuristic algorithms available which partition the graph into
+required number of clusters in polynomial time.
+				</p>
+			</section>
+			<section>
+				<h4>NP-complete Problem</h4>
+				<img src="staticFiles/img/tocccc.png" height="355px" width="310px">
+			</section>
+			<section>
+				<h4>Post processing</h4>
+				<p>
+					Many applications require some post-processing of the obtained clusters, for
+example, in case of the recommendation engine there is no need of clusters with
+single or very few number of documents and thus such clusters are merged
+applying other heuristics.
+				</p>
+			</section>
+				<section>
+					<h4>Algorithm</h4>
+					<img src="staticFiles/img/cluster (1).PNG">
+				</section>
+
+			</section>
+			<section>
+				<h2>Results</h2>
+				<section>
+					<h4>Datasets</h4>
+					<p style="font-size: 30px">
+We have used two datasets<br>
+1. 20 newsgroups:-
+
+
+
+This is a very standard and popular dataset used for evaluation of many text applications,
+data mining methods, machine learning methods, etc.<br>
+<div align="left" style="font-size: 30px">Its details are as follows:<br>
+• Number of unique documents = 18,828<br>
+• Number of categories = 20<br>
+• Number of unique words after removing the stopwords = 71,830</div></p>
+				</section>
+				<section>
+					<img src="staticFiles/img/Capture.PNG">
+				</section>
+				<section>
+					<h4>Datasets</h4>
+					<p style="font-size: 30px">
+
+2. Reuters -21578:-
+
+
+
+This is the most common dataset used for evaluation of document categorization and clustering.<br>
+<div align="left" style="font-size: 30px">Its details are as follows:<br>
+• Number of unique documents = 19715<br>
+• Number of categories = 5<br>
+• Number of unique words after removing the stopwords = 39,096</div></p>
+				</section>
+				<section>
+					<img src="staticFiles/img/Capture1.PNG">
+				</section>
+				</section>
+				<section>
+				<h2>Conclusion </h2>
+				<p>
+					While working on this project we investigated many existing algorithms and proposed new ones. We
+conclude that it is hardly possible to get a general algorithm, which can work the best in
+clustering all types of datasets. It is still an open problem and looking at the rate at which the web is growing, for
+any application using web documents, clustering will become an essential part of the
+application.
+				</p>
+			</section>
+
+				<section>
+					<h2>Submitted By:</h2><br>
+					<h4>Shivam Taneja (UE158100)</h4><br>
+					<h4>Shubham Sharma (UE158105)</h4><br>
+					<h4>Ujjwal (UE158112)</h4><br>
+				</section>
+				<section>
+					<h2>Submitted To:</h2><br>
+					<h4>Dr. Yogita Thakran</h4><br>
+
+				</section>
+				<section>
+					<h1>THANK YOU!!</h1>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="staticFiles/js/head.min.js"></script>
+		<script src="staticFiles/js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'staticFiles/plugins/notes.js', async: true },
+					{ src: 'staticFiles/plugins/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
